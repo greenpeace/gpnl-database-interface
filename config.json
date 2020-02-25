@@ -1,0 +1,6 @@
+{
+  "invokerPackage": "P4NL_DATABASE_INTERFACE",
+  "composerVendorName": "greenpeace",
+  "composerProjectName": "gpnl-database-interface",
+  "packagePath": "client"
+}

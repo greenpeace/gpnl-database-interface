@@ -1,0 +1,968 @@
+{
+	"swagger" : "2.0",
+	"info" : {
+		"version" : "v1",
+		"title" : "GPN.RegistrerenApi"
+	},
+	"host" : "",
+	"basePath" : "",
+	"schemes" : [ "https" ],
+	"security" : [ {
+		"APIKey" : [ ]
+	} ],
+	"paths" : {
+		"/contact/info" : {
+			"get" : {
+				"tags" : [ "Contact" ],
+				"summary" : "To test if this API controller is running.",
+				"description" : "",
+				"operationId" : "Contact_Info",
+				"consumes" : [ ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/contact/{id}" : {
+			"get" : {
+				"tags" : [ "Contact" ],
+				"summary" : "To get contact data based on the contact guid.",
+				"description" : "",
+				"operationId" : "Contact_GetContactByGuid",
+				"consumes" : [ ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ {
+					"name" : "id",
+					"in" : "path",
+					"required" : true,
+					"type" : "string",
+					"format" : "uuid"
+				} ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/machtiging/info" : {
+			"get" : {
+				"tags" : [ "Machtiging" ],
+				"summary" : "To test if this API controller is running.",
+				"description" : "",
+				"operationId" : "Machtiging_Info",
+				"consumes" : [ ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/machtiging/register" : {
+			"post" : {
+				"tags" : [ "Machtiging" ],
+				"summary" : "To register an authorization (machtiging) request.",
+				"description" : "You have to supply the NAW data or the guid of the contact to register the authorization for that contact.",
+				"operationId" : "Machtiging_Register",
+				"consumes" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ {
+					"in" : "body",
+					"name" : "request",
+					"required" : true,
+					"schema" : {
+						"$ref" : "#/definitions/MachtigingRequest"
+					}
+				} ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/payment/info" : {
+			"get" : {
+				"tags" : [ "Payment" ],
+				"summary" : "To test if this API controller is running.",
+				"description" : "",
+				"operationId" : "Payment_Info",
+				"consumes" : [ ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/payment/ideal/issuerbanks" : {
+			"get" : {
+				"tags" : [ "Payment" ],
+				"summary" : "To get a list of all the iDeal issuerbanks.",
+				"description" : "",
+				"operationId" : "Payment_GetIssuerBanks",
+				"consumes" : [ ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/payment/ideal" : {
+			"post" : {
+				"tags" : [ "Payment" ],
+				"summary" : "To register an iDeal payment request.",
+				"description" : "You have to supply the NAW data or the guid of the contact to register the iDeal payment for that contact.",
+				"operationId" : "Payment_RequestIDealPayment",
+				"consumes" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ {
+					"in" : "body",
+					"name" : "request",
+					"required" : true,
+					"schema" : {
+						"$ref" : "#/definitions/PaymentRequest"
+					}
+				} ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/register/info" : {
+			"get" : {
+				"tags" : [ "Register" ],
+				"summary" : "To test if this API controller is running.",
+				"operationId" : "Register_Info",
+				"consumes" : [ ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/register/email" : {
+			"post" : {
+				"tags" : [ "Register" ],
+				"summary" : "To register a participant for an email newsletters.",
+				"operationId" : "Register_RegisterEmail",
+				"consumes" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ {
+					"in" : "body",
+					"name" : "request",
+					"required" : true,
+					"schema" : {
+						"$ref" : "#/definitions/EmailRequest"
+					}
+				} ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/register/infoaanvraag" : {
+			"post" : {
+				"tags" : [ "Register" ],
+				"summary" : "To register an information request.",
+				"operationId" : "Register_RegisterInfoRequest",
+				"consumes" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ {
+					"in" : "body",
+					"name" : "request",
+					"required" : true,
+					"schema" : {
+						"$ref" : "#/definitions/InfoRequest"
+					}
+				} ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/register/periodiek" : {
+			"post" : {
+				"tags" : [ "Register" ],
+				"summary" : "To register an periodical donation request.",
+				"operationId" : "Register_RegisterPeriodiekeSchenking",
+				"consumes" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ {
+					"in" : "body",
+					"name" : "request",
+					"description" : "",
+					"required" : true,
+					"schema" : {
+						"$ref" : "#/definitions/PeriodiekSchenkenRequest"
+					}
+				} ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/transactionstate/info" : {
+			"get" : {
+				"tags" : [ "TransactionState" ],
+				"summary" : "To test if this API controller is running.",
+				"operationId" : "TransactionState_Info",
+				"consumes" : [ ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/transactionstate/push" : {
+			"post" : {
+				"tags" : [ "TransactionState" ],
+				"summary" : "To save the tranaction state of an iDeal payment request.",
+				"operationId" : "TransactionState_SavePaymentTransactionState",
+				"consumes" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ {
+					"in" : "body",
+					"name" : "pushResponseWrapper",
+					"description" : "",
+					"required" : true,
+					"schema" : {
+						"$ref" : "#/definitions/TransactionStatusWrapper"
+					}
+				} ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/validate/info" : {
+			"get" : {
+				"tags" : [ "Validation" ],
+				"summary" : "To test if this API controller is running.",
+				"operationId" : "Validation_Info",
+				"consumes" : [ ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/validate/iban" : {
+			"post" : {
+				"tags" : [ "Validation" ],
+				"summary" : "To validate an IBAN bank account number.",
+				"operationId" : "Validation_ValidateIban",
+				"consumes" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ {
+					"in" : "body",
+					"name" : "iban",
+					"description" : "",
+					"required" : true,
+					"schema" : {
+						"type" : "string"
+					}
+				} ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		},
+		"/validate/postcode" : {
+			"post" : {
+				"tags" : [ "Validation" ],
+				"summary" : "To retrieve address information based on a combination of postal code and house number.",
+				"operationId" : "Validation_ValidatePostcode",
+				"consumes" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+				"produces" : [ "application/json", "text/json", "text/html", "application/xml", "text/xml" ],
+				"parameters" : [ {
+					"in" : "body",
+					"name" : "request",
+					"description" : "",
+					"required" : true,
+					"schema" : {
+						"$ref" : "#/definitions/PostcodeValidationRequest"
+					}
+				} ],
+				"responses" : {
+					"200" : {
+						"description" : "OK",
+						"schema" : {
+							"type" : "object"
+						}
+					}
+				}
+			}
+		}
+	},
+	"securityDefinitions" : {
+		"APIKey" : {
+			"type" : "apiKey",
+			"name" : "api_key",
+			"in" : "query"
+		}
+	},
+	"definitions" : {
+		"MachtigingRequest" : {
+			"type" : "object",
+			"required" : [ "marketingcode" ],
+			"properties" : {
+				"marketingcode" : {
+					"type" : "string"
+				},
+				"literatuurcode" : {
+					"type" : "string"
+				},
+				"initialen" : {
+					"type" : "string"
+				},
+				"voornaam" : {
+					"type" : "string"
+				},
+				"tussenvoegsel" : {
+					"type" : "string"
+				},
+				"achternaam" : {
+					"type" : "string"
+				},
+				"geslacht" : {
+					"type" : "string"
+				},
+				"email" : {
+					"type" : "string"
+				},
+				"registreerEmailNiewsbrief" : {
+					"type" : "boolean"
+				},
+				"guid" : {
+					"type" : "string"
+				},
+				"geboortedatum" : {
+					"type" : "string",
+					"format" : "date-time"
+				},
+				"telefoonnummer" : {
+					"type" : "string"
+				},
+				"mobielnummer" : {
+					"type" : "string"
+				},
+				"straat" : {
+					"type" : "string"
+				},
+				"huisnummer" : {
+					"type" : "string"
+				},
+				"huisnummertoevoeging" : {
+					"type" : "string"
+				},
+				"postcode" : {
+					"type" : "string"
+				},
+				"woonplaats" : {
+					"type" : "string"
+				},
+				"landcode" : {
+					"type" : "string"
+				},
+				"bedrag" : {
+					"type" : "number",
+					"format" : "double"
+				},
+				"rekeningnummer" : {
+					"type" : "string"
+				},
+				"machtigingtype" : {
+					"type" : "string"
+				},
+				"einddatum" : {
+					"type" : "string",
+					"format" : "date-time"
+				},
+				"looptijd" : {
+					"type" : "string"
+				},
+				"extraInformatie" : {
+					"type" : "string"
+				},
+				"contactGuid" : {
+					"type" : "string",
+					"format" : "uuid"
+				}
+			}
+		},
+		"PaymentRequest" : {
+			"type" : "object",
+			"required" : [ "marketingCode", "returnUrlCancel", "returnUrlError", "returnUrlReject", "returnUrlSuccess" ],
+			"properties" : {
+				"initials" : {
+					"type" : "string"
+				},
+				"firstname" : {
+					"type" : "string"
+				},
+				"middlename" : {
+					"type" : "string"
+				},
+				"lastname" : {
+					"type" : "string"
+				},
+				"gender" : {
+					"type" : "string"
+				},
+				"birthday" : {
+					"type" : "string",
+					"format" : "date-time"
+				},
+				"street" : {
+					"type" : "string"
+				},
+				"housenumber" : {
+					"type" : "string"
+				},
+				"housenumberAddition" : {
+					"type" : "string"
+				},
+				"postcode" : {
+					"type" : "string"
+				},
+				"city" : {
+					"type" : "string"
+				},
+				"email" : {
+					"type" : "string"
+				},
+				"phonenumber" : {
+					"type" : "string"
+				},
+				"description" : {
+					"type" : "string"
+				},
+				"amount" : {
+					"type" : "number",
+					"format" : "double"
+				},
+				"comment" : {
+					"type" : "string"
+				},
+				"issuersBank" : {
+					"type" : "string"
+				},
+				"clientIp" : {
+					"type" : "string"
+				},
+				"clientUserAgent" : {
+					"type" : "string"
+				},
+				"returnUrlSuccess" : {
+					"type" : "string"
+				},
+				"returnUrlCancel" : {
+					"type" : "string"
+				},
+				"returnUrlError" : {
+					"type" : "string"
+				},
+				"returnUrlReject" : {
+					"type" : "string"
+				},
+				"marketingCode" : {
+					"type" : "string"
+				},
+				"literatureCode" : {
+					"type" : "string"
+				},
+				"guid" : {
+					"type" : "string"
+				},
+				"countryId" : {
+					"type" : "string"
+				},
+				"accountNumber" : {
+					"type" : "string"
+				},
+				"subscriptionCode" : {
+					"type" : "string"
+				},
+				"subscriptionEndDate" : {
+					"type" : "string",
+					"format" : "date-time"
+				},
+				"subscriptionMonths" : {
+					"type" : "integer",
+					"format" : "int32"
+				},
+				"contactGuid" : {
+					"type" : "string",
+					"format" : "uuid"
+				}
+			}
+		},
+		"EmailRequest" : {
+			"type" : "object",
+			"required" : [ "email", "literatuurcode", "marketingcode", "screenId", "voornaam" ],
+			"properties" : {
+				"voornaam" : {
+					"type" : "string"
+				},
+				"email" : {
+					"type" : "string"
+				},
+				"marketingcode" : {
+					"type" : "string"
+				},
+				"literatuurcode" : {
+					"type" : "string"
+				},
+				"registreerEmailNiewsbrief" : {
+					"type" : "boolean",
+					"readOnly" : true
+				},
+				"screenId" : {
+					"type" : "integer",
+					"format" : "int32"
+				}
+			}
+		},
+		"InfoRequest" : {
+			"type" : "object",
+			"required" : [ "achternaam", "huisnummer", "landcode", "marketingcode", "plaats", "requestedItemId", "straat" ],
+			"properties" : {
+				"voornaam" : {
+					"type" : "string"
+				},
+				"geslacht" : {
+					"type" : "string"
+				},
+				"initialen" : {
+					"type" : "string"
+				},
+				"tussenvoegsel" : {
+					"type" : "string"
+				},
+				"achternaam" : {
+					"type" : "string"
+				},
+				"landcode" : {
+					"type" : "string"
+				},
+				"postcode" : {
+					"type" : "string"
+				},
+				"huisnummer" : {
+					"type" : "string"
+				},
+				"huisnummertoevoeging" : {
+					"type" : "string"
+				},
+				"straat" : {
+					"type" : "string"
+				},
+				"plaats" : {
+					"type" : "string"
+				},
+				"telefoonnummer" : {
+					"type" : "string"
+				},
+				"mobielnummer" : {
+					"type" : "string"
+				},
+				"email" : {
+					"type" : "string"
+				},
+				"marketingcode" : {
+					"type" : "string"
+				},
+				"requestedItemId" : {
+					"type" : "integer",
+					"format" : "int32",
+					"minimum" : 1,
+					"maximum" : 2147483647
+				},
+				"aantal" : {
+					"type" : "integer",
+					"format" : "int32"
+				}
+			}
+		},
+		"PeriodiekSchenkenRequest" : {
+			"type" : "object",
+			"required" : [ "achternaam", "email", "geboortedatum", "geboorteplaats", "huisnummer", "initialen", "landcode", "marketingcode", "screenId", "telefoonnummer", "voornamen" ],
+			"properties" : {
+				"marketingcode" : {
+					"type" : "string"
+				},
+				"screenId" : {
+					"type" : "integer",
+					"format" : "int32"
+				},
+				"bedrag" : {
+					"type" : "number",
+					"format" : "double",
+					"minimum" : 50,
+					"maximum" : 2147483647
+				},
+				"jaar" : {
+					"type" : "integer",
+					"format" : "int32"
+				},
+				"geslacht" : {
+					"type" : "string"
+				},
+				"initialen" : {
+					"type" : "string"
+				},
+				"voornamen" : {
+					"type" : "string"
+				},
+				"tussenvoegsel" : {
+					"type" : "string"
+				},
+				"achternaam" : {
+					"type" : "string"
+				},
+				"geboortedatum" : {
+					"type" : "string",
+					"format" : "date-time"
+				},
+				"geboorteplaats" : {
+					"type" : "string"
+				},
+				"burgelijkestaat" : {
+					"type" : "string"
+				},
+				"postcode" : {
+					"type" : "string"
+				},
+				"huisnummer" : {
+					"type" : "string"
+				},
+				"huisnummertoevoeging" : {
+					"type" : "string"
+				},
+				"straat" : {
+					"type" : "string"
+				},
+				"woonplaats" : {
+					"type" : "string"
+				},
+				"telefoonnummer" : {
+					"type" : "string"
+				},
+				"email" : {
+					"type" : "string"
+				},
+				"rekeningnummer" : {
+					"type" : "string"
+				},
+				"betalingstermijn" : {
+					"type" : "string"
+				},
+				"landcode" : {
+					"type" : "string"
+				},
+				"voornamenPartner" : {
+					"type" : "string"
+				},
+				"achternaamPartner" : {
+					"type" : "string"
+				},
+				"geboortedatumPartner" : {
+					"type" : "string",
+					"format" : "date-time"
+				},
+				"geboorteplaatsPartner" : {
+					"type" : "string"
+				}
+			}
+		},
+		"TransactionStatusWrapper" : {
+			"type" : "object",
+			"properties" : {
+				"transaction" : {
+					"$ref" : "#/definitions/TransactionStatus"
+				}
+			}
+		},
+		"TransactionStatus" : {
+			"type" : "object",
+			"properties" : {
+				"key" : {
+					"type" : "string"
+				},
+				"invoice" : {
+					"type" : "string"
+				},
+				"serviceCode" : {
+					"type" : "string"
+				},
+				"status" : {
+					"$ref" : "#/definitions/Status"
+				},
+				"isTest" : {
+					"type" : "boolean"
+				},
+				"order" : {
+					"type" : "string"
+				},
+				"currency" : {
+					"type" : "string"
+				},
+				"amountDebit" : {
+					"type" : "number",
+					"format" : "double"
+				},
+				"amountCredit" : {
+					"type" : "number",
+					"format" : "double"
+				},
+				"transactionType" : {
+					"type" : "string"
+				},
+				"services" : {
+					"type" : "array",
+					"items" : {
+						"$ref" : "#/definitions/Service"
+					}
+				},
+				"customParameters" : {
+					"type" : "array",
+					"items" : {
+						"$ref" : "#/definitions/CustomParameter"
+					}
+				},
+				"additionalParameters" : {
+					"$ref" : "#/definitions/TransactionStatusResponseAdditionalParameter"
+				},
+				"mutationType" : {
+					"type" : "integer",
+					"format" : "int32",
+					"enum" : [ 0, 1, 2, 3 ]
+				},
+				"relatedTransactions" : {
+					"type" : "array",
+					"items" : {
+						"$ref" : "#/definitions/RelatedTransaction"
+					}
+				},
+				"isCancelable" : {
+					"type" : "boolean"
+				},
+				"issuingCountry" : {
+					"type" : "string"
+				},
+				"startRecurrent" : {
+					"type" : "boolean"
+				},
+				"recurring" : {
+					"type" : "boolean"
+				},
+				"customerName" : {
+					"type" : "string"
+				},
+				"payerHash" : {
+					"type" : "string"
+				},
+				"paymentKey" : {
+					"type" : "string"
+				}
+			}
+		},
+		"Status" : {
+			"type" : "object",
+			"properties" : {
+				"code" : {
+					"$ref" : "#/definitions/StatusCode"
+				},
+				"subCode" : {
+					"$ref" : "#/definitions/StatusSubCode"
+				},
+				"dateTime" : {
+					"type" : "string",
+					"format" : "date-time"
+				}
+			}
+		},
+		"Service" : {
+			"type" : "object",
+			"properties" : {
+				"versionAsProperty" : {
+					"type" : "integer",
+					"format" : "int32"
+				},
+				"name" : {
+					"type" : "string"
+				},
+				"action" : {
+					"type" : "string"
+				},
+				"parameters" : {
+					"type" : "array",
+					"items" : {
+						"$ref" : "#/definitions/ResponseParameter"
+					}
+				}
+			}
+		},
+		"CustomParameter" : {
+			"type" : "object",
+			"properties" : {
+				"name" : {
+					"type" : "string"
+				},
+				"value" : {
+					"type" : "string"
+				}
+			}
+		},
+		"TransactionStatusResponseAdditionalParameter" : {
+			"type" : "object",
+			"properties" : {
+				"list" : {
+					"type" : "array",
+					"items" : {
+						"$ref" : "#/definitions/CustomParameter"
+					}
+				}
+			}
+		},
+		"RelatedTransaction" : {
+			"type" : "object",
+			"properties" : {
+				"relationType" : {
+					"type" : "string"
+				},
+				"relatedTransactionKey" : {
+					"type" : "string"
+				}
+			}
+		},
+		"StatusCode" : {
+			"type" : "object",
+			"properties" : {
+				"code" : {
+					"type" : "integer",
+					"format" : "int32"
+				},
+				"description" : {
+					"type" : "string"
+				}
+			}
+		},
+		"StatusSubCode" : {
+			"type" : "object",
+			"properties" : {
+				"code" : {
+					"type" : "string"
+				},
+				"description" : {
+					"type" : "string"
+				}
+			}
+		},
+		"ResponseParameter" : {
+			"type" : "object",
+			"properties" : {
+				"name" : {
+					"type" : "string"
+				},
+				"value" : {
+					"type" : "string"
+				}
+			}
+		},
+		"PostcodeValidationRequest" : {
+			"type" : "object",
+			"required" : [ "huisnummer" ],
+			"properties" : {
+				"postcode" : {
+					"type" : "string"
+				},
+				"huisnummer" : {
+					"type" : "integer",
+					"format" : "int32",
+					"minimum" : 1,
+					"maximum" : 2147483647
+				}
+			}
+		}
+	}
+}

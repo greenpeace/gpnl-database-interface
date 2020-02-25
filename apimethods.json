@@ -1,0 +1,1 @@
+{"Contact":["info","getContactByGuid"],"Machtiging":["info","register"],"Payment":["info","getIssuerBanks","requestIDealPayment"],"Register":["info","registerEmail","registerInfoRequest","registerPeriodiekeSchenking"],"Validation":["info","validateIban","validatePostcode"]}
