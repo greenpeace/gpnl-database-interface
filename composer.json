@@ -30,7 +30,6 @@
 	"autoload-dev": {
 		"psr-4": { "P4NL_DATABASE_INTERFACE\\" : "client/test/" }
 	},
-	"extra": {
 		"merge-plugin": {
 			"require": "client/composer.json",
 			"recurse": true,
@@ -40,6 +39,5 @@
 			"merge-extra": false,
 			"merge-extra-deep": false,
 			"merge-scripts": true
-		}
 	}
 }
