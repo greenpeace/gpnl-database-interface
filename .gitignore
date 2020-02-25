@@ -1,3 +1,3 @@
 \.swagger-codegen/
-/vendor/
 .env
+swagger-codegen-cli.jar
