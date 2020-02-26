@@ -46,6 +46,7 @@ class ApiConnector {
 	 */
 	public function __construct( $debug = false )
     {
+	    require_once('vendor/autoload.php');
 		//	Load API_key & path
     	$dotenv = Dotenv::createImmutable(__DIR__);
 		$dotenv->load();
