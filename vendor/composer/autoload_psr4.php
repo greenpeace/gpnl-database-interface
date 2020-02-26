@@ -9,7 +9,7 @@ return array(
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
-    'P4NL_DATABASE_INTERFACE\\' => array($baseDir . '/client/lib', $baseDir . '/'),
+    'P4NL_DATABASE_INTERFACE\\' => array($baseDir . '/client/lib', $baseDir . '/', $baseDir . '/client/test'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
