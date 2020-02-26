@@ -5,6 +5,7 @@
  * Time: 10:46
  */
 
+require_once "ApiConnector.php";
 use P4NL_DATABASE_INTERFACE\ApiConnector;
 
 $conn = new ApiConnector(true);
