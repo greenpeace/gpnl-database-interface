@@ -1,6 +1,7 @@
 {
 	"name": "greenpeace/gpnl-database-interface",
-	"description": "",
+	"description": "This repository contains the Interface for the GPNL Planet4 project to connect to our APIs",
+	"type": "wordpress-plugin",
 	"keywords": [
 		"swagger",
 		"php",
