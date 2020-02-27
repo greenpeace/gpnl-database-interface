@@ -80,7 +80,7 @@ class ApiConnector {
 	 * @return array
 	 */
 	public function call($api, $method = 'info', $data = []) {
-		$class = __NAMESPACE__ .'\\'.$api.'Api';
+		$class = __NAMESPACE__ .'\\Api\\'.$api.'Api';
 		$apiInstance = new $class(null,$this->config);
 
 
