@@ -1,12 +1,8 @@
 <?php
 /**
- * User: oscar
- * Date: 25-02-20
- * Time: 10:46
+ * Silence is golden.
+ *
+ * @package    nginx-helper
  */
 
-require_once "ApiConnector.php";
-use P4NL_DATABASE_INTERFACE\ApiConnector;
-
-$conn = new ApiConnector(true);
-var_dump($conn->debug());
+// Silence.
