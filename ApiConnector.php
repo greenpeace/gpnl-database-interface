@@ -112,7 +112,7 @@ class ApiConnector {
 	 * @return array
 	 */
 	private function getConfig(){
-        if ( !file_exists("apimethods.json")){
+		if ( !file_exists(__DIR__ . "/apimethods.json")){
             $contents      = file_get_contents('schema.json');
             $results       = json_decode( utf8_encode($contents), true);
             $paths = $results['paths'];
@@ -136,7 +136,7 @@ class ApiConnector {
             file_put_contents("apimethods.json", json_encode($tags) );
         }
         else {
-            $contents = file_get_contents('apimethods.json');
+			$contents = file_get_contents(__DIR__ . "/apimethods.json");
             $tags  = json_decode( utf8_encode($contents), true);
         }
         return $tags;
