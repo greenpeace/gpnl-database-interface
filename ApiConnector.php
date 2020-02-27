@@ -100,9 +100,10 @@ class ApiConnector {
 	 */
 	public function debug(){
 		$test = [
-    		'api_key' => $this->api_key,
+    		'api_key'  => $this->api_key,
+    		'api_host' => $this->host,
 			'endpoints'=> $this->endpoints,
-			'methods'=> $this->methods,
+			'methods'  => $this->methods,
 			];
     	return $test;
 	}
@@ -113,34 +114,33 @@ class ApiConnector {
 	 */
 	private function getConfig(){
 		if ( !file_exists(__DIR__ . "/apimethods.json")){
-            $contents      = file_get_contents('schema.json');
-            $results       = json_decode( utf8_encode($contents), true);
-            $paths = $results['paths'];
-            $tags = [];
-            foreach ($paths as $path) {
-                $keys = array_keys($path);
-                $data =$path[$keys[0]];
-                // Get the name of the API-endpoint
-                $tag = $data['tags'][0];
-                if ( $tag === "TransactionState") continue;
-                $function = $data['operationId'];
-                // Remove unneeded prefix
-                $function = lcfirst(str_replace($tag."_", "", $function));
-                if ( array_key_exists($tag, $tags) ){
-                    array_push($tags[$tag], $function);
-                }
-                else {
-                    $tags[$tag] = [$function];
-                }
-            }
-            file_put_contents("apimethods.json", json_encode($tags) );
-        }
-        else {
+			$contents = file_get_contents('schema.json');
+			$results = json_decode( utf8_encode($contents), true);
+			$paths = $results['paths'];
+			$tags = [];
+			foreach ($paths as $path) {
+				$keys = array_keys($path);
+				$data =$path[$keys[0]];
+// Get the name of the API-endpoint
+				$tag = $data['tags'][0];
+				if ( $tag === "TransactionState") continue;
+				$function = $data['operationId'];
+// Remove unneeded prefix
+				$function = lcfirst(str_replace($tag."_", "", $function));
+				if ( array_key_exists($tag, $tags) ){
+					array_push($tags[$tag], $function);
+				}
+				else {
+					$tags[$tag] = [$function];
+				}
+			}
+			file_put_contents("apimethods.json", json_encode($tags) );
+		}
+		else {
 			$contents = file_get_contents(__DIR__ . "/apimethods.json");
-            $tags  = json_decode( utf8_encode($contents), true);
-        }
-        return $tags;
-
-    }
+			$tags = json_decode( utf8_encode($contents), true);
+		}
+		return $tags;
+	}
 
 }
