@@ -1,6 +1,8 @@
 {
 	"name": "greenpeace/gpnl-database-interface",
-	"description": "",
+	"description": "This repository contains the Interface for the GPNL Planet4 project to connect to our APIs",
+	"type": "wordpress-plugin",
+	"version": "0.0.1",
 	"keywords": [
 		"swagger",
 		"php",
@@ -19,8 +21,12 @@
 		}
 	],
 	"require": {
+		"php": ">=5.5",
+		"ext-curl": "*",
+		"ext-json": "*",
+		"ext-mbstring": "*",
 		"vlucas/phpdotenv": "^4.1",
-		"wikimedia/composer-merge-plugin": "1.4.1"
+		"guzzlehttp/guzzle": "^6.2"
 	},
 	"autoload": {
 		"psr-4": {
@@ -29,17 +35,5 @@
 	},
 	"autoload-dev": {
 		"psr-4": { "P4NL_DATABASE_INTERFACE\\" : "client/test/" }
-	},
-	"extra": {
-		"merge-plugin": {
-			"require": "client/composer.json",
-			"recurse": true,
-			"replace": true,
-			"ignore-duplicates": false,
-			"merge-dev": true,
-			"merge-extra": false,
-			"merge-extra-deep": false,
-			"merge-scripts": true
-		}
 	}
 }

@@ -46,6 +46,7 @@ class ApiConnector {
 	 */
 	public function __construct( $debug = false )
     {
+	    require_once('vendor/autoload.php');
 		//	Load API_key & path
     	$dotenv = Dotenv::createImmutable(__DIR__);
 		$dotenv->load();
@@ -79,7 +80,7 @@ class ApiConnector {
 	 * @return array
 	 */
 	public function call($api, $method = 'info', $data = []) {
-		$class = __NAMESPACE__ .'\\'.$api.'Api';
+		$class = __NAMESPACE__ .'\\Api\\'.$api.'Api';
 		$apiInstance = new $class(null,$this->config);
 
 
@@ -99,9 +100,10 @@ class ApiConnector {
 	 */
 	public function debug(){
 		$test = [
-    		'api_key' => $this->api_key,
+    		'api_key'  => $this->api_key,
+    		'api_host' => $this->host,
 			'endpoints'=> $this->endpoints,
-			'methods'=> $this->methods,
+			'methods'  => $this->methods,
 			];
     	return $test;
 	}
@@ -111,35 +113,34 @@ class ApiConnector {
 	 * @return array
 	 */
 	private function getConfig(){
-        if ( !file_exists("apimethods.json")){
-            $contents      = file_get_contents('schema.json');
-            $results       = json_decode( utf8_encode($contents), true);
-            $paths = $results['paths'];
-            $tags = [];
-            foreach ($paths as $path) {
-                $keys = array_keys($path);
-                $data =$path[$keys[0]];
-                // Get the name of the API-endpoint
-                $tag = $data['tags'][0];
-                if ( $tag === "TransactionState") continue;
-                $function = $data['operationId'];
-                // Remove unneeded prefix
-                $function = lcfirst(str_replace($tag."_", "", $function));
-                if ( array_key_exists($tag, $tags) ){
-                    array_push($tags[$tag], $function);
-                }
-                else {
-                    $tags[$tag] = [$function];
-                }
-            }
-            file_put_contents("apimethods.json", json_encode($tags) );
-        }
-        else {
-            $contents = file_get_contents('apimethods.json');
-            $tags  = json_decode( utf8_encode($contents), true);
-        }
-        return $tags;
-
-    }
+		if ( !file_exists(__DIR__ . "/apimethods.json")){
+			$contents = file_get_contents('schema.json');
+			$results = json_decode( utf8_encode($contents), true);
+			$paths = $results['paths'];
+			$tags = [];
+			foreach ($paths as $path) {
+				$keys = array_keys($path);
+				$data =$path[$keys[0]];
+// Get the name of the API-endpoint
+				$tag = $data['tags'][0];
+				if ( $tag === "TransactionState") continue;
+				$function = $data['operationId'];
+// Remove unneeded prefix
+				$function = lcfirst(str_replace($tag."_", "", $function));
+				if ( array_key_exists($tag, $tags) ){
+					array_push($tags[$tag], $function);
+				}
+				else {
+					$tags[$tag] = [$function];
+				}
+			}
+			file_put_contents("apimethods.json", json_encode($tags) );
+		}
+		else {
+			$contents = file_get_contents(__DIR__ . "/apimethods.json");
+			$tags = json_decode( utf8_encode($contents), true);
+		}
+		return $tags;
+	}
 
 }
