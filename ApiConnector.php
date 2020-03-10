@@ -47,14 +47,14 @@ class ApiConnector {
 	public function __construct( $debug = false )
     {
 	    require_once('vendor/autoload.php');
-		//	Load API_key & path
-    	$dotenv = Dotenv::createImmutable(__DIR__);
-		$dotenv->load();
 
     	$this->methods = $this->getConfig();
 		$this->endpoints = array_keys($this->methods);
 
 		if( $debug ){
+			//	Load API_key & path
+			$dotenv = Dotenv::createImmutable(__DIR__);
+			$dotenv->load();
 			$this->api_key = $_ENV['gpnl_database_api_key'];
 			$this->host = $_ENV['gpnl_database_api_host'];
 		}
